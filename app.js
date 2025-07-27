@@ -88,6 +88,29 @@ const btnContainer = document.querySelector(".btn-container");
 
 window.addEventListener("DOMContentLoaded", function () {
   displayMenuItems(menu);
+  displayMenuBtns();
+});
+
+function displayMenuItems(menuItem) {
+  let displayMenu = menuItem.map(function (item) {
+    return ` <article class="menu-item">
+          <img src=${item.img} class="photo" alt=${item.title} />
+          <div class="item-info">
+            <header>
+              <h4>${item.title}</h4>
+              <h4 class="price">$${item.price}</h4>
+            </header>
+            <div class="item-text">
+              ${item.desc}
+            </div>
+          </div>
+        </article>`;
+  });
+  displayMenu = displayMenu.join("");
+  sectionCenter.innerHTML = displayMenu;
+}
+
+function displayMenuBtns() {
   const categories = menu.reduce(
     function (values, item) {
       if (!values.includes(item.category)) {
@@ -125,23 +148,4 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
-
-function displayMenuItems(menuItem) {
-  let displayMenu = menuItem.map(function (item) {
-    return ` <article class="menu-item">
-          <img src=${item.img} class="photo" alt=${item.title} />
-          <div class="item-info">
-            <header>
-              <h4>${item.title}</h4>
-              <h4 class="price">$${item.price}</h4>
-            </header>
-            <div class="item-text">
-              ${item.desc}
-            </div>
-          </div>
-        </article>`;
-  });
-  displayMenu = displayMenu.join("");
-  sectionCenter.innerHTML = displayMenu;
 }
